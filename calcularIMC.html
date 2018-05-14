@@ -1,0 +1,53 @@
+<html>
+   <head>
+      <title>
+         WEB CON JS
+      </title>
+      <script>
+      function calcularIMC ()
+         {
+           console.log ("calcular imc invocado")
+            var caja_estatura = document.getElementById("estatura").value;
+            var caja_peso = document.getElementById("peso").value;
+            var IMC = caja_peso/(Math.pow(caja_estatura, 2));
+            document.getElementById('result').innerHTML = ""
+            var img = new Image ();
+            p1 = document.getElementById("result");
+      switch (IMC){
+        case (IMC<16):
+          img.src="https://www.educima.com/dibujo-para-colorear-esqueleto-dm9340.jpg"; 
+          p1.appendChild("Estas demasiado delgado");
+
+          break;
+        case (16<=IMC<18):
+          img.src="http://www.elcolombiano.com/documents/10157/0/434x481/-73c0/580d365/none/11101/BMIV/image_content_23406039_20150514175242.jpg"; 
+          p1.appendChild("Estas delgado");
+          break;
+        case (18<=IMC<25):
+          img.src=""; 
+          p1.appendChild("Estas un poco gordo");
+          break;
+        case (25<=IMC<31):
+          img.src="https://trome.pe/viral/youtube/youtube-viral-transformacion-gordito-musculoso-tres-meses-video-81188"; 
+          p1.appendChild("Estas gordo");
+          break;
+        case (IMC>31):
+          img.src="https://costalerena.com/wp-content/uploads/2017/03/sobrepeso.jpg"; 
+          p1.appendChild("Estas gordo cabrón");
+          break;
+        default:
+          alert ('No input value');
+         }
+        console.log(caja_estatura);
+        console.log(caja_peso);
+        console.log (IMC);
+      }
+      </script>
+   </head>
+   <body>
+       <label for="peso">Peso</label><input type="text" name="peso" id="peso"><br>
+       <label for="estatura">Estatura</label><input name="estatura" type="text" id="estatura">
+       <button onclick="calcularIMC();">Calcula IMC</button>
+     <p id="result"> <img src=""></p>
+   </body>
+</html>

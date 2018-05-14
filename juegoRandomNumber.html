@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Adivina Mi Número</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script> 
+    const randomNumber =  Math.round(Math.random() * 100);
+    console.log (randomNumber);
+    
+    var intento = 0;
+    var acierto = false;
+    var inputUserValue = 0;
+    var message = '';
+    console.log ("initial value input user", inputUserValue);
+
+    function check (inputUserValue){
+        do {
+        //up the counter
+        intento = intento + 1;
+        // take value of the input user
+        inputUserValue = document.getElementById('respuesta').value ;
+        //check the inputUser
+        if (inputUserValue === randomNumber) acierto == true;
+        //decide the message
+        if (acierto) {
+            message = "Felicidades!";
+        } else {
+            message = "Prueba otra vez!";
+            if (intento === 5){
+                message = "Game Over!"
+            }
+        } 
+            //print the message to the user
+            alert(message);
+            break;
+        } while (intento<=5);
+    }
+
+    
+    </script>
+</head>
+<body>
+    <h1>Adivina mi Número!</h1>
+    <section id="respuestaUser">
+        <h3>Cual es tu respuesta?</h3>
+        <input id="respuesta"></input>
+        <button onclick="check();">Compruebalo</button>
+    </section>
+</body>
+</html>

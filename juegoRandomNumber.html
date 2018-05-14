@@ -22,8 +22,9 @@
         intento = intento + 1;
         // take value of the input user
         inputUserValue = document.getElementById('respuesta').value ;
+        var valorparseado = parseInt(inputUserValue);
         //check the inputUser
-        if (inputUserValue === randomNumber) acierto == true;
+        if (valorparseado === randomNumber) acierto = true;
         //decide the message
         if (acierto) {
             message = "Felicidades!";

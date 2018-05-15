@@ -1,0 +1,36 @@
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="estilo.css">
+  <script type="text/javascript">
+
+    onload = inicia;
+
+    function inicia() {
+      var lista_divs = document.querySelectorAll("div");
+      for (var i = 0; i < lista_divs.length; i++) {
+        lista_divs[i].addEventListener('click', ocultaMuestra);
+      }
+    }
+
+    function ocultaMuestra(evento) {
+      //target, es el elemento tocado
+      //currentTarget, es el elemento contenedor
+      var img_tocado = evento.currentTarget.firstElementChild;
+      var estilo = img_tocado.style.visibility;
+      if (estilo == 'visible' || estilo == '') {
+        img_tocado.style.visibility = 'hidden';
+      }
+      else {
+        img_tocado.style.visibility = 'visible';
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <div>
+    <img src="pantera.jpg" />
+  </div>
+</body>
+</html>

@@ -8,3 +8,10 @@ h1{
 h3{
     color: red;
 }
+
+img {
+    height: 200px; 
+    width: 200px; 
+    object-fit: contain;
+    visibility: hidden;
+}

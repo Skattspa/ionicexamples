@@ -1,0 +1,97 @@
+<html>
+   <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+       <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
+
+<link rel="stylesheet" href="main.css">      
+<title>
+         Tabla de imágenes
+      </title>
+      <script>
+      
+      </script>
+   </head>
+   <body>
+       <table class="table-striped">
+           <tr>
+               <td onclick="ocultaMuestra(this)"></td>
+               <td onclick="ocultaMuestra(this)"></td>
+               <td onclick="ocultaMuestra(this)"></td>
+               <td onclick="ocultaMuestra(this)"></td>
+           </tr>
+           <tr>
+                <td onclick="ocultaMuestra(this)"></td>
+                <td onclick="ocultaMuestra(this)"></td>
+                <td onclick="ocultaMuestra(this)"></td>
+                <td onclick="ocultaMuestra(this)"></td>
+            </tr>
+       </table>
+       <script>
+       /*
+       MouseEvent.getModifierState()
+Returns the current state of the specified modifier key. See the KeyboardEvent.getModifierState() for details.
+MouseEvent.initMouseEvent() 
+Initializes the value of a MouseEvent created. If the event has already being dispatched, this method does nothing.
+       
+       Juego de parejas
+       tablero oculto por defecto (css)
+       iniciar contador de mouse events
+       for
+       cada try, intentar hacer match
+       si no se resetea
+
+
+
+       
+       */
+
+        window.onload = inicia();
+
+
+        
+
+        function inicia() {
+            var tableTr = document.querySelectorAll("tr");
+            var tableTd = document.querySelectorAll("td");
+            var img = document.createElement("img");
+            var imgArray =  ["hormi5.jpg", "esqueleto-humano.jpg", "html5.png", "css3.png"];
+            //pintar imagenes
+            for (var i=0; i < tableTr.length; i++){
+                for (var i=0; i < tableTd.length; i++){
+                    img.src = imgArray[i];
+                    tableTd[i].appendChild(img);
+                }   
+            }
+
+            // check https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+            
+
+        //     var user_counter = 0;
+        //    //var mouseState =  MouseEvent.getModifierState(); 
+        //     for (var i = 0; i < tableTd.length; i++) {
+        //         tableTd[i].addEventListener('click', ocultaMuestra);
+
+        //     }
+        }
+
+        function ocultaMuestra(td_tocado) {
+          var img_tocado = td_tocado.firstElementChild;
+          var estilo = img_tocado.style.visibility;
+          if (estilo == 'visible') {
+            img_tocado.style.visibility = 'hidden';
+          }
+          else {
+            img_tocado.style.visibility = 'visible';
+          }
+        }
+       </script>
+   </body>
+</html>
+

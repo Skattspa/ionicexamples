@@ -1,0 +1,105 @@
+<html>
+   <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+       <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
+
+<link rel="stylesheet" href="main.css">      
+<title>
+         Tabla de imágenes
+      </title>
+      <script>
+      
+      </script>
+   </head>
+   <body>
+       <table class="table-striped">
+           <tr>
+               <td onclick="ocultaMuestra(this)"><img src="hormi5.jpg"></td>
+               <td onclick="ocultaMuestra(this)"><img src="esqueleto-humano.jpg"></td>
+               <td onclick="ocultaMuestra(this)"><img src="hormi5.jpg"></td>
+               <td onclick="ocultaMuestra(this)"><img src="esqueleto-humano.jpg"></td>
+           </tr>
+           <tr>
+                <td onclick="ocultaMuestra(this)"><img src="html5.png"></td>
+                <td onclick="ocultaMuestra(this)"><img src="css3.png"></td>
+                <td onclick="ocultaMuestra(this)"><img src="html5.png"></td>
+                <td onclick="ocultaMuestra(this)"><img src="css3.png"></td>
+            </tr>
+       </table>
+       <script>
+       /*
+       MouseEvent.getModifierState()
+        Returns the current state of the specified modifier key. See the KeyboardEvent.getModifierState() for details.
+        MouseEvent.initMouseEvent() 
+        Initializes the value of a MouseEvent created. If the event has already being dispatched, this method does nothing.
+            
+       Juego de parejas
+       tablero oculto por defecto (css)
+       iniciar contador de mouse events
+       for
+       cada try, intentar hacer match
+       si no se resetea
+
+
+
+       
+       */
+
+        onload = inicia;
+
+        var image_touch = false; 
+        var imgFirst = "";
+        var imgSecond = "";
+        function inicia() {
+            var tableTd = document.querySelectorAll("td");
+            
+            for (var i = 0; i < tableTd.length; i++) {
+                tableTd[i].addEventListener('click', ocultaMuestra);
+
+            }
+        }
+
+        function ocultaMuestra(td_tocado) {
+          var img_tocado = td_tocado.firstElementChild;
+          var estilo = img_tocado.style.visibility;
+
+            if (!image_touch){
+                    image_touch = true; 
+                    imgFirst = img_tocado;
+                    alert ("1 toque");
+
+                                if (estilo == 'visible' || "") {
+                        img_tocado.style.visibility = 'hidden';
+                    }
+                    else {
+                        img_tocado.style.visibility = 'visible';
+                    }
+
+
+                } else {
+                    image_touch = !image_touch;
+                    imgSecond = img_tocado;
+                    alert ("2 toque")
+                    if (imgFirst.src === imgSecond.src){
+                        alert("parejita")
+                    } else {
+                        alert ("try again")
+                        imgFirst.style.visibility = 'hidden';
+                        imgSecond.style.visibility = 'hidden';
+                    }
+                }
+
+
+          
+        }
+       </script>
+   </body>
+</html>
+

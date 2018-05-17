@@ -20,27 +20,49 @@
  *4) EXTRA: Sólo si resolviste los puntos anteriores, implementa una versión recursiva
 -->
     <script language="javascript">
-        function esPalindromo() {
+        //function esPalindromo() {
+            //SOLUCION 1: mi solucion con arrays
             //logintud de input palabra
-            var cad = document.getElementById("palabra").value.toString();
-            var wordArray = Array.from(cad);
-            var wordReverse = wordArray.reverse();
-            if (wordArray == wordReverse){console.log("palindromo")} else {console.log("no palindromo")}
-
-
+            //var cad = document.getElementById("palabra").value.toString();
+            // var wordArray = Array.from(cad);
+            // var wordReverse = wordArray.reverse();
+            // if (wordArray == wordReverse){console.log("palindromo")} else {console.log("no palindromo")}
+           
+              
+        //}
+       
+            //SOLUCION 2 de hacerlo: solucion con for
+            var letra = "";
+            var cadenaReves= "";
+            
             // hacer split de la cadena
-            //leer el array con un for
-            for(i=0; i<cad.length; ){
-                //leer el array
+            //leer con un for
+            function darVuelta (cadena){
+                var cadena = document.getElementById("palabra").value.toString();
+                
+                for(var i=cadena.length - 1; i>=0; i-- ){
+                //leer la palabra al reves
+                    letra = cadena.charAt(i);
+                    cadenaReves = cadenaReves + letra;
+                }
+                comparar(cadenaReves, cadena)
             }
-        }
+
+             function comparar (cadenaReves, cadena){
+                if (cadenaReves ==cadena){
+                    console.log("es palindromo");
+                } else {
+                    console.log("no es palindromo");
+                }
+            }
+        
     </script>
 </head>
 
 <body>
     <label for="palabra">PALABRA</label>
     <input type="text" id="palabra">
-    <button onclick="esPalindromo();">Empieza</button>
+    <button onclick="darVuelta();">Empieza</button>
 </body>
 
 </html>

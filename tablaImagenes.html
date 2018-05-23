@@ -10,7 +10,13 @@
 <!-- Latest compiled and minified JavaScript -->
 <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
 
-<link rel="stylesheet" href="main.css">      
+<link rel="stylesheet" href="main.css">  
+
+<script src="easytimer.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+
 <title>
          Tabla de imágenes
       </title>
@@ -19,6 +25,7 @@
       </script>
    </head>
    <body>
+       <div id="timer"></div>
        <table class="table-striped">
            <tr>
                <td onclick="ocultaMuestra(this)"><img src="hormi5.jpg"></td>
@@ -57,37 +64,43 @@
         var image_touch = false; 
         var imgFirst = "";
         var imgSecond = "";
+        // start timer
+        var timer = new Timer();
         function inicia() {
-            var tableTd = document.querySelectorAll("td");
+            // use timer
             
+            timer.start();
+            timer.addEventListener('secondsUpdated', function (e) {
+                $('#timer').html(timer.getTimeValues().toString());
+                console.log("seconds updating", timer.getTimeValues().toString());
+            });
+            //select td
+            var tableTd = document.querySelectorAll("td");
             for (var i = 0; i < tableTd.length; i++) {
                 tableTd[i].addEventListener('click', ocultaMuestra);
-
             }
         }
 
         function ocultaMuestra(td_tocado) {
           var img_tocado = td_tocado.firstElementChild;
           var estilo = img_tocado.style.visibility;
+          //var imagenVisible = document.querySelectorAll("img").style.visibility;
 
             if (!image_touch){
                     image_touch = true; 
                     imgFirst = img_tocado;
                     alert ("1 toque");
-
-                                if (estilo == 'visible' || "") {
+            if (estilo == 'visible' || "") {
                         img_tocado.style.visibility = 'hidden';
-                    }
-                    else {
+                    } else {
                         img_tocado.style.visibility = 'visible';
                     }
-
-
                 } else {
                     image_touch = !image_touch;
                     imgSecond = img_tocado;
                     alert ("2 toque")
                     if (imgFirst.src === imgSecond.src){
+                        img_tocado.style.visibility = 'visible';
                         alert("parejita")
                     } else {
                         alert ("try again")
@@ -95,6 +108,12 @@
                         imgSecond.style.visibility = 'hidden';
                     }
                 }
+
+            // if (imagenVisible ='visible'){
+            //     console.log("juego terminado");
+            // } else {
+            //     console.log("juego por terminar")
+            // }
 
 
           

@@ -1,0 +1,73 @@
+
+
+<html>
+
+<head>
+    <title>
+        Crea Tabla-Array
+    </title>
+    <link rel="stylesheet" type="text/css" href="estilo4.css">
+    <script>
+        onload = inicio;
+        var array_fotos;
+        var elemento_imagen;
+        var num_foto_actual;
+        function cambiarColor(evento) {
+            // cambiar color
+            console.log("Cambio de foto");
+            console.log(evento.currentTarget.id);
+            if (evento.currentTarget.id == 'fotosalmon') {
+                elemento_imagen.src = 'fotosalmon.jpg';
+                num_foto_actual = array_fotos.indexOf('fotosalmon.jpg');
+            } else if (evento.currentTarget.id == 'fotonegra') {
+                elemento_imagen.src = 'fotonegra.jpg';
+                num_foto_actual = array_fotos.indexOf('fotonegra.jpg');
+            } else {
+                elemento_imagen.src = 'fotoblanca.jpg';
+                num_foto_actual = array_fotos.indexOf('fotoblanca.jpg');
+            }
+
+
+
+        }
+        function inicio() {
+            num_foto_actual = 0;//
+            array_fotos = new Array();
+            array_fotos.push("fotonegra.jpg");
+            array_fotos.push("fotosalmon.jpg");
+            array_fotos.push("fotoblanca.jpg");
+            elemento_imagen = document.getElementById("foto_actual");
+            elemento_imagen.src = array_fotos[num_foto_actual];
+            var div1 = document.getElementById("fotosalmon");
+            div1.addEventListener('click', cambiarColor);
+            var div2 = document.getElementById("fotonegra");
+            div2.addEventListener('click', cambiarColor);
+            var div3 = document.getElementById("fotoblanca");
+            div3.addEventListener('click', cambiarColor);
+
+        }
+
+        function carrousel (){
+            
+        }
+    </script>
+</head>
+
+<body>
+
+    <div id="marco">
+        <div id="imagen">
+            <img id="foto_actual">
+        </div>
+        <div id="seleccion_color">
+            <div id="fotosalmon" style="background-color: rgb(248, 128, 59)"></div>
+            <div id="fotonegra" style="background-color: black"></div>
+            <div id="fotoblanca" style="background-color: rgb(243, 234, 234)"></div>
+            <div>
+                <img id="botonplay" src="botonplay.png">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

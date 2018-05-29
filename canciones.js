@@ -45,19 +45,21 @@ function recibirCanciones(){
                 var trackName = listaCanciones.results[i].trackName ; 
                 var trackPrice = listaCanciones.results[i].trackPrice + 2 ; 
                 var previewUrl = listaCanciones.results[i].previewUrl; 
-                var comprar = ""  ; //checkbox para seleccionar que quiero comprar
                 var fila = document.createElement("tr");
                 var columnaUno = document.createElement("td");
                 var columnaDos = document.createElement("td");
                 var columnaTres = document.createElement("td");
                 var columnaCuatro = document.createElement("td");
+                var columnaCinco = document.createElement("td");
                 var primeraCancion = "";
               
                 tabla.appendChild(fila).appendChild(columnaUno).innerHTML = artistId; //columna artistId
                 tabla.appendChild(fila).appendChild(columnaDos).innerHTML = trackName; //columna trackName
                 tabla.appendChild(fila).appendChild(columnaTres).innerHTML = trackPrice; //columna trackName
                 tabla.appendChild(fila).appendChild(columnaCuatro).innerHTML = previewUrl; //columna previewUrl
-                tabla.appendChild(fila).appendChild(columnaCuatro).innerHTML = previewUrl; //columna previewUrl
+                tabla.appendChild(fila).appendChild(columnaCinco).innerHTML = "<input type='checkbox'>"; //columna seleccion
+                //comprar.addEventListener("click", comprar, false); //añadir evento al checked checkbox
+
             }
         }
         else
@@ -73,9 +75,10 @@ function recibirCanciones(){
 
 
 
-
-
-
-function crearFila (){
-
+    function comprar (){
+        /* @TODO: WIP - Seleccionar el artistId de la cancion que queremos comprar y prepararlo para enviarlo al servidor.
+        
+        */
+    console.log("seleccion de checkbox", this);
 }
+

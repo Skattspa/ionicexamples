@@ -30,6 +30,7 @@ function cogerCanciones (){
 function recibirCanciones(){
     if (xmlHttp.readyState == 4){
         document.getElementById("cargando").removeAttribute("class"); //quitar gif cargando
+       // document.getElementById("tabla").removeChild()
         if(xmlHttp.status == 200)//  el código de la cabecera http es bueno
         {
             //var listaCanciones = xmlHttp.responseText // lista canciones
@@ -40,27 +41,9 @@ function recibirCanciones(){
             
             for (i=0; i<listaCanciones.resultCount; i++){ //meter canciones
                 //@TODO: pasar a una funcion la construccion dinamica de la tabla!!! Este for es demasiado largo.
-                console.log ("he encontrado cancion" + listaCanciones.results[i].artistId);
-                var artistId = listaCanciones.results[i].artistId ; 
-                var trackName = listaCanciones.results[i].trackName ; 
-                var trackPrice = listaCanciones.results[i].trackPrice + 2 ; 
-                var previewUrl = listaCanciones.results[i].previewUrl; 
-                var fila = document.createElement("tr");
-                var columnaUno = document.createElement("td");
-                var columnaDos = document.createElement("td");
-                var columnaTres = document.createElement("td");
-                var columnaCuatro = document.createElement("td");
-                var columnaCinco = document.createElement("td");
-                var primeraCancion = "";
-              
-                tabla.appendChild(fila).appendChild(columnaUno).innerHTML = artistId; //columna artistId
-                tabla.appendChild(fila).appendChild(columnaDos).innerHTML = trackName; //columna trackName
-                tabla.appendChild(fila).appendChild(columnaTres).innerHTML = trackPrice; //columna trackName
-                tabla.appendChild(fila).appendChild(columnaCuatro).innerHTML = previewUrl; //columna previewUrl
-                tabla.appendChild(fila).appendChild(columnaCinco).innerHTML = "<input type='checkbox'>"; //columna seleccion
-                //comprar.addEventListener("click", comprar, false); //añadir evento al checked checkbox
-
+                construirCancion (listaCanciones, tabla);
             }
+            document.getElementById("comprar").addEventListener("click", comprar, false); //añadir evento al checked checkbox
         }
         else
         {
@@ -73,12 +56,46 @@ function recibirCanciones(){
     
 }
 
+function construirCancion (listaCanciones, tabla){
+    //console.log ("he encontrado cancion" + listaCanciones.results[i].artistId);
+    var artistId = listaCanciones.results[i].artistId ; 
+    var trackName = listaCanciones.results[i].trackName ; 
+    var trackPrice = listaCanciones.results[i].trackPrice + 2 ; 
+    var previewUrl = "<video width='320' height='240' controls><source  type='video/mp4'></video>";
+    var artistViewUrl = listaCanciones.results[i].artistViewUrl;
+    previewUrl.src = listaCanciones.results[i].previewUrl;
+    var fila = document.createElement("tr");
+    var columnaUno = document.createElement("td");
+    columnaUno.setAttribute("id","artisId");
+    var columnaDos = document.createElement("td");
+    var columnaTres = document.createElement("td");
+    columnaTres.setAttribute("id","price");
+    var columnaCuatro = document.createElement("td");
+    var columnaCinco = document.createElement("td");
+    var columnaSeis = document.createElement("td");
+   
+    tabla.appendChild(fila).appendChild(columnaUno).innerHTML = artistId; //columna artistId
+    tabla.appendChild(fila).appendChild(columnaDos).innerHTML = trackName; //columna trackName
+    tabla.appendChild(fila).appendChild(columnaTres).innerHTML = trackPrice; //columna trackName
+    tabla.appendChild(fila).appendChild(columnaCuatro).innerHTML = previewUrl; //columna previewUrl
+    tabla.appendChild(fila).appendChild(columnaCinco).innerHTML = "<button id='comprar'>Comprar</button>"; //columna seleccion
+    
+}
+
+function construirTablaHeader (){
+
+}
 
 
-    function comprar (){
+
+function comprar (e){
         /* @TODO: WIP - Seleccionar el artistId de la cancion que queremos comprar y prepararlo para enviarlo al servidor.
-        
+        comprar {
+            pre
+        }
+        //llamar al servidor
         */
-    console.log("seleccion de checkbox", this);
+        console.log(e.currentTarget) //get smt
+
 }
 

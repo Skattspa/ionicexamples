@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <!-- <link rel="stylesheet" href="css/estilos.css">-->
+    <script>
+        var arrayPersonas = new Array();
+        window.onload = function (event) {
+            document.querySelector("#btnInsertar").onclick = insertar;
+        }
+        function ordenPorNombre (a, b) {
+            var num = 0;
+            if (a.nombre > b.nombre) {
+                num = 1;
+            }
+            else if (a.nombre < b.nombre) {
+                num = -1;
+            }
+            
+            return num;
+        }
+
+        function ordenarArray() {
+            arrayPersonas.sort();
+        }
+
+        function ordenarArrayPorNombre() {
+            arrayPersonas.sort(ordenPorNombre);
+        }
+
+        function mostrarArray() {
+            for (var i = 0; i < arrayPersonas.length; i++) {
+                console.log(arrayPersonas[i]);
+            }
+        }
+        var contador = 0;
+        function insertar(params) {
+            contador++;
+            var texto = document.querySelector("#txtNombre").value;
+
+            arrayPersonas.push({ orden: contador, nombre: texto });
+
+            var tbody = document.querySelector("#tablaDatos tbody");
+            var tr = document.createElement("tr");//Fila
+            var td1 = document.createElement("td");//Celda1
+            var td2 = document.createElement("td");//Celda2
+            td1.innerHTML = contador;//Contenido
+            td2.innerHTML = texto;//Contenido
+            tbody.appendChild(tr);//Meter fila en el tbody
+            tr.appendChild(td1);//Meter en la fila la celda 1
+            tr.appendChild(td2);//Meter en la fila la celda 2
+            console.log ("Muestro Nomral");
+            mostrarArray();
+            console.log ("Llamo a ordenar normal");
+            ordenarArray();
+            mostrarArray();
+            console.log ("Llamo a ordenar por nombre");
+            ordenarArrayPorNombre();
+            mostrarArray();
+        }
+    </script>
+</head>
+
+<body>
+    <input type="text" id="txtNombre" />
+    <button id="btnInsertar">Insertar</button>
+    <table id="tablaDatos">
+        <tbody></tbody>
+    </table>
+
+</body>
+
+</html>

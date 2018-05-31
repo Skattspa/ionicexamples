@@ -36,7 +36,8 @@
             console.log("Fin Inicia Tablero . . .");
             //Ocultar las imágenes
         }
-
+        
+        
         function tocadoImagen(evento) {
 
             console.log("El usuario tocó el td");
@@ -65,8 +66,19 @@
                         if (num_aciertos == TOTAL_ACIERTOS) {
                             console.log("Ha ganado");
                             //alert ("Has ganado socio, ENHORABUENA");
-                            timer.stop();
+                            var tiempoFinal = timer.stop();
                             //location.href = "http://www.cnn.com";
+                            //enviar nombre y tiempo.
+                            var record = {
+                                nombre: nombre,
+                                tiempo: tiempo
+                            };
+                            var nombre = prompt("Introduce tu nombre"); //get name value from a prompt
+                            record.nombre = nombre; //adding to the object
+                            var tiempo = document.getElementById("timer").textContent; //get name value from the html div content
+                            record.tiempo = tiempo; //adding to the object
+                            subirRecord(record); //call to the function with record objetc as a parameter
+                            console.log("este es mi record", record);
                         }
 
                     } else {
@@ -83,6 +95,127 @@
             segunda_imagen_tocadal.style.visibility = 'hidden';
             abierto = true;
         }
+
+var xmlHttp = new XMLHttpRequest (); //create request 
+const urlServer = "http://10.1.2.10:8080/appwebprofe/";
+var respuesta;
+    function subirRecord (record){
+        var miRecord = JSON.stringify(record);
+        // Call
+        var url = urlServer + "SubirRecord" //sending data server route
+        xmlHttp.open('POST', url, true);  // open (method, service, asynchrono)
+        xmlHttp.setRequestHeader('Content-Type', 'application/json', 'charset=UTF-8') // headers : content type & mime type. 
+        xmlHttp.send (miRecord); //content message
+        xmlHttp.onreadystatechange = procesarEventoClave;
+    }
+
+    function procesarEventoClave()
+    {
+    if(xmlHttp.readyState==4) //ya hemos recibido respuesta del servidor
+    {
+        if(xmlHttp.status==200)// y el código de la cabecera http es bueno
+            {
+                alert("He recibido " + xmlHttp.responseText);
+                respuesta = JSON.parse(xmlHttp.responseText) // obtener ranking
+                pintarTablaRaking(respuesta); // draw the table
+            }
+        else
+        {
+            alert("Ha ocurrido un error"+ xmlHttp.status +":"+ xmlHttp.statusText);
+        }
+    }
+    }
+    
+    function pintarTablaRaking (respuesta){
+        console.log("respuesta del servidor",respuesta);
+        var tabla = document.getElementById("tablaPuntuaciones");
+        var fila = document.createElement("tr");
+        var columnaNombre = document.createElement("td");
+        var columnaPuntuacion = document.createElement("td");
+        console.log ("ranking Tabla" , respuesta.ranking)
+        for (var j=0; j<respuesta.ranking.length; j++){
+            fila = tabla.appendChild(fila);
+            for (var i=0; i<respuesta.ranking.length; i++){ 
+                var nombre = respuesta.ranking[i].nombre; 
+                var tiempo = respuesta.ranking[i].tiempo; 
+                fila.appendChild(columnaNombre).innerHTML = nombre;
+                console.log(respuesta.ranking[i].nombre);
+                fila.appendChild(columnaPuntuacion).innerHTML = tiempo;
+                console.log(respuesta.ranking[i].tiempo);
+            }
+        }
+    }
+
+// listar puntuaciones en una tabla
+// ordenar las puntuaciones por nombre cuando pinchas columna nombre
+// ordenar las puntuaciones por tiempo cuando pinchas columna tiempo
+/*
+
+
+        document.getElementById("gif").hidden = true;
+    
+    var cancion;
+    var array_fila = new Array;
+    var array_campos = ["Título", "Artista","Imagen","Preview", "Precio", "Seleccionar"];
+
+    if (lista.length > 0){
+            crearCabecera(array_campos);
+
+        for(i = 0; i < lista.length; i++){
+            cancion = document.createElement("TR");
+            cancion.id = "cancion" + i;
+            if ( i%2 == 0){
+                cancion.style.background = "#DFF0FF";
+            }
+            else {
+                cancion.style.background = "#DFFFF0";
+            }
+            tabla.appendChild(cancion);
+            array_fila = [
+                        lista[i].trackName, 
+                        lista[i].artistName,
+                        "<img src=" +lista[i].artworkUrl100 +">",
+                        "<audio src=" + lista[i].previewUrl + " controls>",
+                        (lista[i].trackPrice + 2) + " " + lista[i].currency,
+                        "<input type='checkbox' name ='comprar' value='" + lista[i].trackId + "' onclick='listarCompra()'>"
+                        ]
+            crearFila(i, array_fila);
+            document.getElementById("boton_compra").hidden = false;
+            
+        }
+        
+        
+        
+    }
+    }
+
+
+    function crearCabecera(array){
+    var cab;
+    for (i=0; i < array.length; i++){
+        cab = document.createElement("TH");
+        cab.innerHTML = array[i];
+        tabla.appendChild(cab);
+    }
+}
+
+function crearFila(fila_num, array){
+    var celda;
+    var fila = document.getElementById("cancion" + fila_num);
+    var i;
+    for (i = 0; i < array.length ; i++) {
+        celda = document.createElement("TD");
+        celda.innerHTML = array[i];
+        fila.appendChild(celda);
+    }
+}
+*/
+    
+
+
+
+
+
     </script>
 </head>
 
@@ -105,6 +238,14 @@
                 <img src="pantera.jpg">
             </td>
         </tr>
+    </table>
+    <table id="tablaPuntuaciones">
+        <thead>
+            <tr>
+                <th id="nombreRanking">Nombre</th>
+                <th id="puntuacionRanking"> Puntuacion</th>
+            </tr>
+        </thead>
     </table>
 </body>
 

@@ -19,11 +19,12 @@
         <label for="password">Password</label><input id="password" type="password" pattern=".{6,}" title="La contraseña debe tener al menos 6 caracteres" required>
         <label for="passwordCheck">Password check</label><input id="passwordCheck" type="password" pattern=".{6,}"
         title="La contraseña debe tener al menos 6 caracteres"  onchange="passwordMatching()" required>
-        <label for="phone">Numero de telefono</label><input id="phone" type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" title="Tu numero de telefono debe tener 9 numeros">
-        <label for="web">Web</label><input id="web" type="url" pattern="^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$" title="Tu direccion web debe ser www.example.domain">
+        <label for="phone">Numero de telefono</label><input id="phone" type="tel"  title="Tu numero de telefono debe tener 9 numeros">
+        <label for="web">Web</label><input id="web" type="url"  title="Tu direccion web debe ser www.example.domain">
         <input id="enviar" type="submit" value="enviar">
 </form>
-
+<!-- pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" -->
+<!-- pattern="^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$" -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="intl-tel-input-12.1.0/build/js/intlTelInput.js"></script>
 <script>$("#phone").intlTelInput(); 

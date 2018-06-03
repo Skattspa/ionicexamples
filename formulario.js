@@ -28,6 +28,10 @@ function validar (){
     var extension = $("#phone").intlTelInput("getExtension"); //get extension
     var web = document.getElementById("web").value; //get input web
 
+
+    var prueba = phone.intlTelInput("getNumber");
+    console.log(prueba);
+
     const EXPRESION_REGULAR_USUARIO_MAIL = /^\w{6,}$/; //El mail y el usuario deben tener al menos 6 caracteres formado por letras, números o guiones bajos
     const EXPRESION_REGULAR_EMAIL = /^\w+([\.\+\-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/; 
     const EXPRESION_REGULAR_WEB = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/; 

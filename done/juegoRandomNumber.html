@@ -29,7 +29,13 @@
         if (acierto) {
             message = "Felicidades!";
         } else {
-            message = "Prueba otra vez!";
+            if (valorparseado <= randomNumber){
+            message = "El número que buscas es mayor que " + valorparseado;
+
+            } else {
+                message = "El número que buscas es menor que " + valorparseado;
+            }
+            //message = "Prueba otra vez!";
             if (intento === 5){
                 message = "Game Over!"
             }
@@ -44,7 +50,7 @@
     </script>
 </head>
 <body>
-    <h1>Adivina mi Número!</h1>
+    <h1>Adivina mi Número entre 1 y 100!</h1>
     <section id="respuestaUser">
         <h3>Cual es tu respuesta?</h3>
         <input id="respuesta"></input>

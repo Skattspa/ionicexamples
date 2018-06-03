@@ -1,6 +1,13 @@
         // compongo un json con nombre, email, contraseña . method post a login
         // si la validacion es erronea
 
+
+onload = phone; // añadido
+function phone(){ // añadido
+    $("#phone").intlTelInput();
+}
+
+
 var xmlHttp = new XMLHttpRequest (); //create request 
 const urlServer = "http://10.1.2.10:8080/appwebprofe/";
 var formulario;
@@ -19,12 +26,15 @@ function passwordMatching (){
 
 
 function validar (){
-    console.log("validando");
+
     var nombre = document.getElementById("name").value; //get input name
     var email = document.getElementById("email").value; //get input email
     var password = document.getElementById("password").value; //get input password
     var passwordCheck = document.getElementById("passwordCheck").value; //get input passwordCheck
     var phone = document.getElementById("phone").value; //get input phone
+
+    var number = $("#phone").intlTelInput("getNumber");  
+    console.log ('number',number);
     var extension = $("#phone").intlTelInput("getExtension"); //get extension
     var web = document.getElementById("web").value; //get input web
 
@@ -102,4 +112,12 @@ if(xmlHttp.readyState==4) //ya hemos recibido respuesta del servidor
         alert("Ha ocurrido un error"+ xmlHttp.status +":"+ xmlHttp.statusText);
     }
 }
+}
+
+
+function limpiar(){
+    document.getElementById("nombre").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("psw").value = "";
+    document.getElementById("conf_psw").value = "";
 }

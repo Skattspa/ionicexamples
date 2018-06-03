@@ -9,7 +9,11 @@
     
     <!-- plugin banderitas -->
     <link rel="stylesheet" href="intl-tel-input-12.1.0/build/css/intlTelInput.css">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="intl-tel-input-12.1.0/build/js/utils.js"></script>
+    <script src="intl-tel-input-12.1.0/build/js/intlTelInput.min.js"></script>
+  
+    
 </head>
 <body>
 
@@ -22,13 +26,15 @@
         <label for="phone">Numero de telefono</label><input id="phone" type="tel"  title="Tu numero de telefono debe tener 9 numeros">
         <label for="web">Web</label><input id="web" type="url"  title="Tu direccion web debe ser www.example.domain">
         <input id="enviar" type="submit" value="enviar">
+        <button onclick="limpiar()">Limpiar</button>
 </form>
+<!-- <script src="formulario.js"></script> -->
 <!-- pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" -->
 <!-- pattern="^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$" -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="intl-tel-input-12.1.0/build/js/intlTelInput.js"></script>
-<script>$("#phone").intlTelInput(); 
-var number = $("#phone").intlTelInput("getNumber");   </script>
 <script src="formulario.js"></script>
+<!-- <script>
+     $("#phone").intlTelInput();
+</script> -->
+
 </body>
 </html>

@@ -33,14 +33,9 @@ function validar (){
     var passwordCheck = document.getElementById("passwordCheck").value; //get input passwordCheck
     var phone = document.getElementById("phone").value; //get input phone
 
-    var number = $("#phone").intlTelInput("getNumber");  
-    console.log ('number',number);
-    var extension = $("#phone").intlTelInput("getExtension"); //get extension
+    phone = $("#phone").intlTelInput("getNumber");  //get input phone using library
+    console.log ('number',phone);
     var web = document.getElementById("web").value; //get input web
-
-
-    var prueba = phone.intlTelInput("getNumber");
-    console.log(prueba);
 
     const EXPRESION_REGULAR_USUARIO_MAIL = /^\w{6,}$/; //El mail y el usuario deben tener al menos 6 caracteres formado por letras, números o guiones bajos
     const EXPRESION_REGULAR_EMAIL = /^\w+([\.\+\-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/; 
@@ -92,7 +87,7 @@ function enviar (formulario){
     var data = JSON.stringify(formulario);
     var url = urlServer + "Login" //sending data server route
     xmlHttp.open('POST', url, true);  // open (method, service, asynchrono)
-    xmlHttp.setRequestHeader('Content-Type', 'application/json', 'charset=UTF-8') // headers : content type & mime type. 
+    xmlHttp.setRequestHeader('Content-Type', 'application/json; charset=UTF-8') // headers : content type & mime type. 
     xmlHttp.send (data); //content message
     xmlHttp.onreadystatechange = procesarEventoClave;
 }
@@ -115,9 +110,3 @@ if(xmlHttp.readyState==4) //ya hemos recibido respuesta del servidor
 }
 
 
-function limpiar(){
-    document.getElementById("nombre").value = "";
-    document.getElementById("email").value = "";
-    document.getElementById("psw").value = "";
-    document.getElementById("conf_psw").value = "";
-}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Adivina Mi Número</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script> 
+    const randomNumber =  Math.round(Math.random() * 100);
+    console.log (randomNumber);
+    
+    var intento = 0;
+    var acierto = false;
+    var inputUserValue = 0;
+    var message = '';
+    var tip;
+    console.log ("initial value input user", inputUserValue);
+    function check (inputUserValue){
+        do {
+        //up the counter
+        intento = intento + 1;
+        // take value of the input user
+        inputUserValue = document.getElementById('respuesta').value ;
+        var valorparseado = parseInt(inputUserValue);
+        //check the inputUser
+        if (valorparseado === randomNumber) acierto = true;
+        //decide the message
+        if (acierto) {
+            message = "Felicidades! Mi número era "+randomNumber;
+        } else {
+            if (valorparseado <= randomNumber){
+            message = "El número que buscas es mayor que " + valorparseado;
+            if (randomNumber <= 50){}
+            tip = "Mi numero es menor ";
+            } else {
+                message = "El número que buscas es menor que " + valorparseado;
+            }
+            //message = "Prueba otra vez!";
+            if (intento === 5){
+                message = "Game Over! Mi número era "+randomNumber;
+            }
+        } 
+            //print the message to the user
+            alert(message);
+            alert (tip);
+            break;
+        } while (intento<=5);
+    }
+    
+    </script>
+</head>
+<body>
+    <h1>Adivina mi Número entre 1 y 100!</h1>
+    <section id="respuestaUser">
+        <h3>Cual es tu respuesta?</h3>
+        <input id="respuesta"></input>
+        <button onclick="check();">Compruebalo</button>
+    </section>
+</body>
+</html>

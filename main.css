@@ -1,0 +1,17 @@
+#golesVisitante, #golesLocal{
+    background-color: darkcyan;
+}
+#container {
+    text-align: center;
+    max-width:500px;
+    margin: auto;
+    display: -webkit-inline-box;
+}
+ul{
+    text-align: center;
+}
+li {
+    
+    list-style-type: none;
+    color: white;
+}
